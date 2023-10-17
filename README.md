@@ -69,6 +69,20 @@ $ npm start
    3. render products
    4. style products
 5. Add Page Routing
+
    1. npm install react-router-dom
    2. create route for the hoem screen
    3. create router for product screen
+
+6. Create Node.JS Server
+   1. run npm init -y in root folder called backend
+   2. update package.json set type:" module"
+   3. add .js to imports in backend
+   4. npm install express
+   5. create server.js
+   6. add start command as node backend/server.js
+   7. Connect Express with MongoDB
+   8. move products.js from frontend to backend
+   9. create route for /api/products
+   10. return products
+   11. run nodemon server.js
