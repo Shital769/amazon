@@ -57,3 +57,18 @@ $ npm start
 
 - Run http://localhost:3000/signin
 - Enter admin email and password and click signin
+
+# Steps
+
+1. Install required tools
+2. Create React App
+3. Create Git Repository
+4. List Products
+   a. create products array
+   b. add product images
+   c. render products
+   d. style products
+5. Add Page Routing
+   a. npm install react-router-dom
+   b. create route for the hoem screen
+   c. create router for product screen
