@@ -1,5 +1,5 @@
-import React, { useEffect, useReducer, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useReducer } from "react";
 import { Link } from "react-router-dom";
 import logger from "use-reducer-logger";
 const reducer = (state, action) => {
