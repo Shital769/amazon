@@ -108,10 +108,18 @@ $ npm start
    2. update app.js
 
 10. Create Product and Rating Component
+
     1. create Rating component
     2. create Product component
     3. use Rating component in Product component
 
 11. Create Product Details Screen
-   1. fetch product from backend
-   2. create 3 columns for image, info and action
+12. fetch product from backend
+13. create 3 columns for image, info and action
+
+14. Create Loading and Message Component
+    1. create loading component
+    2. use spinner component
+    3. create message component
+    4. create utils.js to define getError function
+    5. display error messages
