@@ -111,3 +111,7 @@ $ npm start
     1. create Rating component
     2. create Product component
     3. use Rating component in Product component
+
+11. Create Product Details Screen
+   1. fetch product from backend
+   2. create 3 columns for image, info and action
