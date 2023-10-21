@@ -11,7 +11,7 @@ function reducer(state, action) {
     case "CART_ADD_ITEM":
       // add to cart
       const newItem = action.payload;
-      const existItem = state.acrt.cartItems.find(
+      const existItem = state.cart.cartItems.find(
         (item) => item._id === newItem._id
       );
 
@@ -29,5 +29,5 @@ function reducer(state, action) {
 export function StoreProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
-  return <StoreProvider value={value}>{props.children}</StoreProvider>;
+  return <Store.Provider value={value}>{props.children}</Store.Provider>;
 }
