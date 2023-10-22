@@ -114,10 +114,11 @@ $ npm start
     3. use Rating component in Product component
 
 11. Create Product Details Screen
-12. fetch product from backend
-13. create 3 columns for image, info and action
 
-14. Create Loading and Message Component
+    1. fetch product from backend
+    2. create 3 columns for image, info and action
+
+12. Create Loading and Message Component
 
     1. create loading component
     2. use spinner component
@@ -125,13 +126,19 @@ $ npm start
     4. create utils.js to define getError function
     5. display error messages
 
-15. Implement Add To Cart
+13. Implement Add To Cart
 
     1. Create React Context
     2. define reducer
     3. create store provider
     4. implement add to cart Button click handler
 
-16. Complete Add To Cart
+14. Complete Add To Cart
+
     1. check exist item in the cart
     2. check count in stock in backend
+
+15. Create Cart Screen
+    1. create 2 columns
+    2. display items list
+    3. create action column
