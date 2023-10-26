@@ -164,8 +164,14 @@ $ npm start
     4. connect with mongodb database
 
 19. Seed Sample Data
+
     1. create Product Model
     2. create User Model
     3. create seed route
     4. use route in server.js
     5. seed sample product
+
+20. Seed Sample Users
+    1. create user model
+    2. seed sample users
+    3. create user routes
