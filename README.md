@@ -157,7 +157,15 @@ $ npm start
     3. add signin button
 
 18. Connect To MongoDB Database
+
     1. create atlas mongodb database
     2. install local mongodb database
     3. npm install mongoose
     4. connect with mongodb database
+
+19. Seed Sample Data
+    1. create Product Model
+    2. create User Model
+    3. create seed route
+    4. use route in server.js
+    5. seed sample product
