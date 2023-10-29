@@ -178,6 +178,12 @@ $ npm start
     3. create user routes
 
 21. Create SignIn Backend API
+
     1. create signin api
     2. npm install jsonwebtoken
     3. define generateToken
+
+22. Complete SignIn Screen
+    1. handle submit action
+    2. save token in store and local storage
+    3. show user name in header
