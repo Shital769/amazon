@@ -184,6 +184,12 @@ $ npm start
     3. define generateToken
 
 22. Complete SignIn Screen
+
     1. handle submit action
     2. save token in store and local storage
     3. show user name in header
+
+23. Create Shipping Address
+    1. create from inputs
+    2. handle save shipping address
+    3. add checkout wizard bar
