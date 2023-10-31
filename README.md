@@ -190,6 +190,12 @@ $ npm start
     3. show user name in header
 
 23. Create Shipping Address
+
     1. create from inputs
     2. handle save shipping address
     3. add checkout wizard bar
+
+24. Create SignUp Screen
+    1. create input forms
+    2. handle submit
+    3. create backend api
