@@ -60,7 +60,7 @@ const PlaceOrderScreen = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${userInfo.token}`,
+            authorization: `Bearer ${userInfo.token}`,
           },
         }
       );
