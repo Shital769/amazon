@@ -9,7 +9,7 @@ import { getError } from "../utils";
 import axios from "axios";
 import LoadingBox from "../components/LoadingBox";
 
-const reducer = (state, action) => {
+function reducer(state, action) {
   switch (action.type) {
     case "CREATE_REQUEST":
       return { ...state, loading: true };
@@ -20,7 +20,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-};
+}
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
