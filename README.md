@@ -236,6 +236,13 @@ $ npm start
     9. create pay order api in backend
 
 30. Display Order History
+
     1. create order history screen
     2. create order history api
     3. use api in the frontend
+
+31. Create User Profile Screen
+    1. get user info from context
+    2. show user info from context
+    3. create user update api
+    4. update user info
