@@ -242,7 +242,17 @@ $ npm start
     3. use api in the frontend
 
 31. Create User Profile Screen
+
     1. get user info from context
     2. show user info from context
     3. create user update api
     4. update user info
+
+32. Publish To Heroku
+    1. create and config node project
+    2. serve build folder in frontend folder
+    3. create heroku account
+    4. connect it to github
+    5. create mongoDB Atlas database
+    6. set database connection in heroku env varibles
+    7. commit and push
