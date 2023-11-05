@@ -249,6 +249,7 @@ $ npm start
     4. update user info
 
 32. Publish To Heroku
+
     1. create and config node project
     2. serve build folder in frontend folder
     3. create heroku account
@@ -256,3 +257,7 @@ $ npm start
     5. create mongoDB Atlas database
     6. set database connection in heroku env varibles
     7. commit and push
+
+33. Add Sidebar and Search Box
+    1. add sidebar component
+    2. add search box component
