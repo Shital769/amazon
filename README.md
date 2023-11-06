@@ -259,5 +259,11 @@ $ npm start
     7. commit and push
 
 33. Add Sidebar and Search Box
+
     1. add sidebar component
     2. add search box component
+
+34. Create Search Screen
+    1. show filters
+    2. create api for searching products
+    3. display results
