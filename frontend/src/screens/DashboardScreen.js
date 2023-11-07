@@ -114,6 +114,25 @@ const DashboardScreen = () => {
               <MessageBox>No Sales</MessageBox>
             )}
           </div>
+          <div className="my-3">
+            <h2>Categories</h2>
+            {summary &&
+            summary.productCategories &&
+            summary.productCategories.length > 0 ? (
+              <Chart
+                width="100%"
+                height="400px"
+                chartType="PieChart"
+                loader={<div>Loading Chart...</div>}
+                data={[
+                  ["Category", "Products"],
+                  ...summary.productCategories.map((x) => [x._id, x.count]),
+                ]}
+              ></Chart>
+            ) : (
+              <MessageBox>No Sales</MessageBox>
+            )}
+          </div>
         </>
       )}
     </div>
