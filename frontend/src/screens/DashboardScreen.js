@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useReducer } from "react";
-import { Store } from "../Store";
-import { getError } from "../utils";
 import axios from "axios";
+import React, { useContext, useEffect, useReducer } from "react";
+import { Card, Col, Row } from "react-bootstrap";
+import Chart from "react-google-charts";
+import { Store } from "../Store";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import { Card, CardBody, Col, Row } from "react-bootstrap";
+import { getError } from "../utils";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,8 +35,8 @@ const DashboardScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = axios.get("/api/orders/summary", {
-          headers: { Authorization: `Bearer  ${userInfo.token}` },
+        const { data } = await axios.get("/api/orders/summary", {
+          headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (error) {
@@ -59,7 +60,7 @@ const DashboardScreen = () => {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {summary.users && summary.users[0]
+                    {summary && summary.users && summary.users[0]
                       ? summary.users[0].numUsers
                       : 0}
                   </Card.Title>
@@ -71,7 +72,7 @@ const DashboardScreen = () => {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {summary.orders && summary.users[0]
+                    {summary && summary.orders && summary.users[0]
                       ? summary.orders[0].numOrders
                       : 0}
                   </Card.Title>
@@ -83,8 +84,9 @@ const DashboardScreen = () => {
               <Card>
                 <Card.Body>
                   <Card.Title>
-                    {summary.orders && summary.users[0]
-                      ? summary.orders[0].totalSales.toFiced(2)
+                    $
+                    {summary && summary.orders && summary.users[0]
+                      ? summary.orders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>
                   <Card.Text>Total Sales</Card.Text>
@@ -92,6 +94,26 @@ const DashboardScreen = () => {
               </Card>
             </Col>
           </Row>
+
+          <div className="my-3">
+            <h2>Sales</h2>
+            {summary &&
+            summary.dailyOrders &&
+            summary.dailyOrders.length > 0 ? (
+              <Chart
+                width="100%"
+                height="400px"
+                chartType="AreaChart"
+                loader={<div>Loading Chart...</div>}
+                data={[
+                  ["Date", "Sales"],
+                  ...summary.dailyOrders.map((x) => [x._id, x.sales]),
+                ]}
+              ></Chart>
+            ) : (
+              <MessageBox>No Sales</MessageBox>
+            )}
+          </div>
         </>
       )}
     </div>
