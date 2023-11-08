@@ -276,6 +276,12 @@ $ npm start
     3. add menu for admin in header
 
 36. Create Dashboard Screen
+
     1. create dashboard ui
     2. implement backend ui
     3. connect ui to backend
+
+37. Manage Products
+    1. create product list page
+    2. implement backend api
+    3. fetch data
