@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Store } from "../Store";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -83,7 +83,15 @@ const ProductListScreen = () => {
             </tbody>
           </table>
           <div>
-            
+            {[...Array(pages).keys()].map((x) => (
+              <Link
+                className={x + 1 === Number(page) ? "btn text-bold" : "btn"}
+                key={x + 1}
+                to={`/productlist?page=${x + 1}`}
+              >
+                {x + 1}
+              </Link>
+            ))}
           </div>
         </>
       )}
