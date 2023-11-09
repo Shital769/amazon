@@ -294,6 +294,11 @@ $ npm start
     3. handle on click
 
 39. Edit Product
+
     1. create edit product button
     2. create edit prodict ui
     3. display product info in the input boxes
+
+40. Implement Update Product
+    1. create edit product backend api
+    2. handle update click

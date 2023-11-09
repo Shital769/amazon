@@ -7,7 +7,6 @@ import MessageBox from "../components/MessageBox";
 import { Button, Col, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
-import { LinkContainer } from "react-router-bootstrap";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -72,7 +71,7 @@ const ProductListScreen = () => {
           {},
           { headers: { Authorization: `Bearer ${userInfo.token}` } }
         );
-        toast.success("product create successfully");
+        toast.success("product created successfully");
         dispatch({ type: "CREATE_SUCCESS" });
         navigate(`/admin/product/${data.product._id}`);
       } catch (error) {
