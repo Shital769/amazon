@@ -14,6 +14,28 @@ productRouter.get("/", async (req, res) => {
   }
 });
 
+productRouter.post(
+  "/",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const newProduct = new Product({
+      name: "sample-product  " + Date.now(),
+      slug: "sample-name-" + Date.now(),
+      image: "/images/p1.jpg",
+      price: 99.99,
+      category: "sample category",
+      brand: "sample brand",
+      countInStock: 20,
+      rating: 0,
+      numberOfReviews: 0,
+      description: "This is a sample product for testing",
+    });
+    const product = await newProduct.save();
+    res.send({ message: "Product Created", product });
+  })
+);
+
 const PAGE_SIZE = 3;
 
 productRouter.get(

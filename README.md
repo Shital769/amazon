@@ -282,6 +282,12 @@ $ npm start
     3. connect ui to backend
 
 37. Manage Products
+
     1. create product list page
     2. implement backend api
     3. fetch data
+
+38. Create Products button
+    1. create products button
+    2. implement backend api
+    3. handle on click
