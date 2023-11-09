@@ -288,6 +288,12 @@ $ npm start
     3. fetch data
 
 38. Create Products button
+
     1. create products button
     2. implement backend api
     3. handle on click
+
+39. Edit Product
+    1. create edit product button
+    2. create edit prodict ui
+    3. display product info in the input boxes

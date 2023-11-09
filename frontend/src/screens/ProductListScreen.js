@@ -7,6 +7,7 @@ import MessageBox from "../components/MessageBox";
 import { Button, Col, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
+import { LinkContainer } from "react-router-bootstrap";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -110,6 +111,7 @@ const ProductListScreen = () => {
                 <th>PRICE($AUD)</th>
                 <th>CATEGORY</th>
                 <th>BRAND</th>
+                <th>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
@@ -120,6 +122,15 @@ const ProductListScreen = () => {
                   <td>{product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
+                  <td>
+                    <Button
+                      type="submit"
+                      variant="light"
+                      onClick={() => navigate(`/admin/products/${product._id}`)}
+                    >
+                      Edit
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
