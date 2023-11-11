@@ -324,6 +324,12 @@ $ npm start
     3. fetch and display orders
 
 44. Deliver Order
+
     1. add deliver button
     2. handle click action
     3. implement backend api for deliver
+
+45. Delete Order
+    1. add delete button
+    2. handle click action
+    3. implement backend api for delete
