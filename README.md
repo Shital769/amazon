@@ -305,7 +305,13 @@ $ npm start
     2. handle update click
 
 41. Uload product Image
+
     1. create cloudinary account
     2. use the api key in env file
     3. handle upload file
     4. implement backend api to upload
+
+42. Delete Product
+    1. create delete product button
+    2. create confirmation dialog
+    3. implement backend api to delete

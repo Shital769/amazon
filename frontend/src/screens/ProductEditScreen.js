@@ -119,7 +119,7 @@ const ProductEditScreen = () => {
       const { data } = await axios.post("/api/upload", bodyFormData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${userInfo.token}`,
+          authorization: `Bearer ${userInfo.token}`,
         },
       });
 

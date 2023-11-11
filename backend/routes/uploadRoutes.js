@@ -3,9 +3,11 @@ import { v2 as cloudinary } from "cloudinary";
 import streamifier from "streamifier";
 import multer from "multer";
 import { isAdmin, isAuth } from "../utils.js";
+
 const uploadRouter = express.Router();
 
 const upload = multer();
+
 uploadRouter.post(
   "/",
   isAuth,
