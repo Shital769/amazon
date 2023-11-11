@@ -23,6 +23,13 @@ const reducer = (state, action) => {
       return { ...state, loadingUpdate: false };
     case "UPDATE_FAIL":
       return { ...state, loadingUpdate: false };
+    case "UPLOAD_REQUEST":
+      return { ...state, loadingUpload: true, errorUplaod: "" };
+    case "UPLOAD_SUCCESS":
+      return { ...state, loadingUpload: false, errorUplaod: "" };
+    case "UPLOAD_FAIL":
+      return { ...state, loadingUpload: true, errorUplaod: action.paylaod };
+
     default:
       return state;
   }
@@ -36,10 +43,11 @@ const ProductEditScreen = () => {
   const { state } = useContext(Store);
   const { userInfo } = state;
 
-  const [{ loading, error, loadingUpdate }, dispatch] = useReducer(reducer, {
-    loading: true,
-    error: "",
-  });
+  const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      error: "",
+    });
 
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
@@ -102,6 +110,28 @@ const ProductEditScreen = () => {
     }
   };
 
+  const uploadFilehandler = async (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append("file", file);
+
+    try {
+      const { data } = await axios.post("/api/upload", bodyFormData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+
+      dispatch({ type: "UPLOAD_SUCCESS" });
+      toast.success("Image uploaded successfully");
+      setImage(data.secure_url);
+    } catch (error) {
+      toast.error(getError(error));
+      dispatch({ type: "UPLOAD_FAIL", paylaod: getError(error) });
+    }
+  };
+
   return (
     <Container className="small-container">
       <Helmet>
@@ -149,6 +179,11 @@ const ProductEditScreen = () => {
               required
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="uploadFile">
+            <Form.Label>Upload File</Form.Label>
+            <Form.Control type="file" onChange={uploadFilehandler} />
+            {loadingUpload && <LoadingBox></LoadingBox>}
+          </Form.Group>
           <Form.Group className="mb-3" controlId="category">
             <Form.Label>Category</Form.Label>
             <Form.Control
@@ -182,7 +217,9 @@ const ProductEditScreen = () => {
             />
           </Form.Group>
           <div className="mb-3">
-            <Button disabled={loadingUpdate} type="submit">Update</Button>
+            <Button disabled={loadingUpdate} type="submit">
+              Update
+            </Button>
             {loadingUpdate && <LoadingBox></LoadingBox>}
           </div>
         </Form>

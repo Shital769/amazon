@@ -300,5 +300,12 @@ $ npm start
     3. display product info in the input boxes
 
 40. Implement Update Product
+
     1. create edit product backend api
     2. handle update click
+
+41. Uload product Image
+    1. create cloudinary account
+    2. use the api key in env file
+    3. handle upload file
+    4. implement backend api to upload
