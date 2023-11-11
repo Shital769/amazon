@@ -312,6 +312,12 @@ $ npm start
     4. implement backend api to upload
 
 42. Delete Product
+
     1. create delete product button
     2. create confirmation dialog
     3. implement backend api to delete
+
+43. List Orders
+    1. create order list screen
+    2. implement backend api
+    3. fetch and display orders
