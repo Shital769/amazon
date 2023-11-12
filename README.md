@@ -330,6 +330,12 @@ $ npm start
     3. implement backend api for deliver
 
 45. Delete Order
+
     1. add delete button
     2. handle click action
     3. implement backend api for delete
+
+46. List Users
+    1. create user list screen
+    2. implement backend api
+    3. fetch and display users
