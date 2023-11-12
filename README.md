@@ -342,8 +342,14 @@ $ npm start
     3. fetch and display users
 
 47. Edit User
+
     1. create edit button
     2. create edit product api
     3. display info in the input boxes
     4. implement backend api
     5. handle edit click
+
+48. Delete User
+    1. add delete button
+    2. handle click action
+    3. implement backend api for delete
