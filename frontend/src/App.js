@@ -236,7 +236,7 @@ function App() {
                 }
               />
               <Route
-                path="/admin/users/:id"
+                path="/admin/user/:id"
                 element={
                   <AdminRoute>
                     <UserEditScreen />

@@ -42,7 +42,7 @@ const UserEditScreen = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -125,8 +125,9 @@ const UserEditScreen = () => {
             className="mb-3"
             type="checkbox"
             id="isAdmin"
-            label={isAdmin}
-            onChange={(e) => setIsAdmin(e.target.value)}
+            label="isAdmin"
+            checked={isAdmin}
+            onChange={(e) => setIsAdmin(e.target.checked)}
           />
 
           <div className="mb-3">

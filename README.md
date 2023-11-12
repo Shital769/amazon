@@ -304,7 +304,7 @@ $ npm start
     1. create edit product backend api
     2. handle update click
 
-41. Uload product Image
+41. Upload product Image
 
     1. create cloudinary account
     2. use the api key in env file
