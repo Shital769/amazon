@@ -78,7 +78,7 @@ const ProductListScreen = () => {
       }
     };
     if (successDelete) {
-      dispatch({ type: "DELET_RESET" });
+      dispatch({ type: "DELETE_RESET" });
     } else {
       fetchData();
     }

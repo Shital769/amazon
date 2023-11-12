@@ -32,6 +32,7 @@ const reducer = (state, action) => {
 };
 
 const OrderListScreen = () => {
+   const navigate = useNavigate();
   const { state } = useContext(Store);
   const { userInfo } = state;
   const [{ loading, error, orders, loadingDelete, successDelete }, dispatch] =
@@ -40,7 +41,6 @@ const OrderListScreen = () => {
       error: "",
     });
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,20 +55,19 @@ const OrderListScreen = () => {
       }
     };
     if (successDelete) {
-      dispatch({ type: "DELET_RESET" });
+      dispatch({ type: "DELETE_RESET" });
     } else {
       fetchData();
     }
   }, [userInfo, successDelete]);
 
   const deleterOrderHandler = async (order) => {
-    if (!window.confirm("Are you sure to delete this order?")) {
+    if (window.confirm("Are you sure to delete this order?")) {
       try {
         dispatch({ type: "DELETE_REQUEST" });
         await axios.delete(`/api/orders/${order._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-
         toast.success("Order deleted succesfully");
         dispatch({ type: "DELETE_SUCCESS" });
       } catch (error) {
@@ -129,7 +128,7 @@ const OrderListScreen = () => {
                   <Button
                     type="button"
                     variant="light"
-                    onClick={deleterOrderHandler(order)}
+                    onClick={() => deleterOrderHandler(order)}
                   >
                     Delete
                   </Button>
