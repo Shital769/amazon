@@ -208,7 +208,11 @@ const OrderScreen = () => {
                 <strong> Address:</strong>
                 {order.shippingAddress.address},{order.shippingAddress.city},{" "}
                 {order.shippingAddress.postCode},{" "}
-                {order.shippingAddress.country}
+                {order.shippingAddress.country},
+              &nbsp;
+              {order.shippingAddress.location && order.shippingAddress.location.lat && (
+                <a href={`https://maps.google.com?q=${order.shippingAddress.location.lat},${order.shippingAddress.location.lng} `} >Show on Map</a>
+              )}
               </Card.Text>
               {order.isDelivered ? (
                 <MessageBox variant="success">

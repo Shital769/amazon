@@ -9,6 +9,7 @@ const ShippingAddressScreen = () => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
+    fullBox,
     userInfo,
     cart: { shippingAddress },
   } = state;
@@ -34,6 +35,7 @@ const ShippingAddressScreen = () => {
         city,
         postCode,
         country,
+        location: shippingAddress.location,
       },
     });
     localStorage.setItem(
@@ -44,10 +46,17 @@ const ShippingAddressScreen = () => {
         city,
         postCode,
         country,
+        location: shippingAddress.location,
       })
     );
     navigate("/payment");
   };
+
+  useEffect(() => {
+    //dispatching set fullBox off to change layout to regular layout
+    ctxDispatch({ type: "SET_FULLBOX_OFF" });
+  }, [ctxDispatch, fullBox]);
+
   return (
     <div>
       <Helmet>
@@ -97,6 +106,24 @@ const ShippingAddressScreen = () => {
               required
             />
           </Form.Group>
+          <div className="mb-3">
+            <Button
+              id="chooseLocationOnMap"
+              type="button"
+              variant="light"
+              onClick={() => navigate("/map")}
+            >
+              Choose Location On Map
+            </Button>
+            {shippingAddress.location && shippingAddress.location.lat ? (
+              <div>
+                LAT:{shippingAddress.location.lat}
+                LNG:{shippingAddress.location.lng}
+              </div>
+            ) : (
+              <div>No Location</div>
+            )}
+          </div>
           <div className="mb-3">
             <Button variant="primary" type="submit">
               Continue
