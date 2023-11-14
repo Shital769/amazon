@@ -356,6 +356,7 @@ $ npm start
     3. implement backend api for delete
 
 49. Choose Address on Google Map
+
     1. create google map credentials
     2. update .env file withb Google Api Key
     3. create api to send google api to frontend
@@ -365,3 +366,11 @@ $ npm start
     7. install @react-google-maps/api
     8. use it in shipping screen
     9. apply map to checkout screen
+
+50. Email Order receipt by mailgun
+    1. create mailgun account
+    2. add and verify your domain to mailgun
+    3. install mailgun-js
+    4. set api key in ENV file
+    5. change pay order in orderRouter
+    6. send email order receipt
