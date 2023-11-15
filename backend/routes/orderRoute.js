@@ -1,6 +1,6 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import { isAdmin, isAuth, mailgun } from "../utils.js";
+import { isAdmin, isAuth, mailgun, payOrderEmailTemplate } from "../utils.js";
 import Order from "../models/orderModel.js";
 import User from "../models/userModel.js";
 import Product from "../models/productModel.js";
@@ -146,7 +146,7 @@ orderRouter.put(
         .messages()
         .send(
           {
-            from: "Amazon<amazon@mg.shital.com>",
+            from: "Amazon<amazon@mg.yourdomain.com>",
             to: `${order.user.name} <${order.user.email}>`,
             subject: `New order ${order._id}`,
             html: payOrderEmailTemplate(order),
@@ -159,6 +159,7 @@ orderRouter.put(
             }
           }
         );
+      
       res.send({ message: "Order Paid", order: updatedOrder });
     } else {
       res.status(401).send({ message: "Order Not Found" });

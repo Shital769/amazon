@@ -368,9 +368,15 @@ $ npm start
     9. apply map to checkout screen
 
 50. Email Order receipt by mailgun
+
     1. create mailgun account
     2. add and verify your domain to mailgun
     3. install mailgun-js
     4. set api key in ENV file
     5. change pay order in orderRouter
     6. send email order receipt
+
+51. Review Products
+    1. create submit review form
+    2. handle submit
+    3. implement backend api for review
