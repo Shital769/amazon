@@ -102,7 +102,6 @@ const ProductScreen = () => {
     }
 
     try {
-      dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(
         `/api/products/${product._id}/reviews`,
         { rating, comment, name: userInfo.name },
@@ -241,7 +240,7 @@ const ProductScreen = () => {
                 />
               </FloatingLabel>
               <div className="mb-3">
-                <Button disabled={loadingCreateReview} type="button">
+                <Button disabled={loadingCreateReview} type="submit">
                   Submit
                 </Button>
                 {loadingCreateReview && <LoadingBox></LoadingBox>}
