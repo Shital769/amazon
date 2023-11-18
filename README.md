@@ -377,6 +377,12 @@ $ npm start
     6. send email order receipt
 
 51. Review Products
+
     1. create submit review form
     2. handle submit
     3. implement backend api for review
+
+52. Upload multiple images
+    1. add images to product model
+    2. get images in edit screen
+    3. show images in product screen
