@@ -140,7 +140,7 @@ const ProductEditScreen = () => {
   };
 
   const deleteFileHandler = async (fileName) => {
-    setImages(images.filter((x) => x === fileName));
+    setImages(images.filter((x) => x !== fileName));
     toast.success("Image removed successfully. Click Update to apply it");
   };
 
@@ -204,7 +204,7 @@ const ProductEditScreen = () => {
               {images.map((x) => (
                 <ListGroup.Item key={x}>
                   {x}
-                  <Button variant="light" onClick={(x) => deleteFileHandler(x)}>
+                  <Button variant="light" onClick={() => deleteFileHandler(x)}>
                     <i className="fa fa-times-circle"></i>
                   </Button>
                 </ListGroup.Item>
