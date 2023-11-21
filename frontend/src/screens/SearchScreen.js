@@ -118,7 +118,7 @@ const SearchScreen = () => {
 
     return `${
       skipPathname ? "" : "/search?"
-    }category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&page=${filterPage}&order=${sortOrder}`;
+    }category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}order=${sortOrder}&page=${filterPage}&`;
   };
 
   return (
