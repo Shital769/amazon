@@ -1,8 +1,9 @@
 import express from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import expressAsyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
-import { generateToken, isAdmin, isAuth } from "../utils.js";
-import bcrypt from "bcryptjs";
+import { baseUrl, generateToken, isAdmin, isAuth, mailgun } from "../utils.js";
 
 const userRouter = express.Router();
 
@@ -129,6 +130,76 @@ userRouter.put(
     } else {
       res.status(404).send({ message: "User Not Found!" });
     }
+  })
+);
+
+userRouter.post(
+  "/forget-password",
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (user) {
+      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+        expiresIn: "3h",
+      });
+
+      user.resetToken = token;
+      await user.save();
+
+      //reset link
+      console.log(`${baseUrl()}/reset-password/${token}`);
+
+      mailgun()
+        .messages()
+        .send(
+          {
+            from: "Amazon <me@mg.yourdomain.com>",
+            to: `${user.name} <${user.email}>`,
+            subject: `Reset Password`,
+            html: `
+        <p>Please Check the following link to reset your password:</p>
+        <a href="${baseUrl()}/reset-password/${token}"} >Reset Password</a>
+        `,
+          },
+          (error, body) => {
+            console.log(error);
+            console.log(body);
+          }
+        );
+      res.send({ message: "We've sent a reset password link to your email." });
+    } else {
+      res.status(404).send({ message: "User Not Found!" });
+    }
+  })
+);
+
+// reset-password
+userRouter.post(
+  "/reset-password",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    jwt.verify(
+      req.body.token,
+      process.env.JWT_SECRET,
+
+      async (err, decode) => {
+        if (err) {
+          res.status(401).send({ message: "Invalid token." });
+        } else {
+          const user = await User.findOne({ resetToken: req.body.token });
+          if (user) {
+            if (req.body.password) {
+              user.password = bcrypt.hashSync(req.body.password, 8);
+              await user.save();
+
+              res.send({ message: "Password reset successfully" });
+            }
+          } else {
+            res.status(404).send({ message: "User Not Found!" });
+          }
+        }
+      }
+    );
   })
 );
 

@@ -1,7 +1,19 @@
+// {
+//   "folders": [
+//     {
+//       "path": "."
+//     }
+//   ],
+//   "settings": {}
+// }
+
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	]
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "perttier.semi": true,
+  "prettier.singleQuoate": true,
+  "folders": [
+    {
+      "path": "."
+    }
+  ]
 }
