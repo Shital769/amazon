@@ -135,7 +135,7 @@ const ProductScreen = () => {
       <Row>
         <Col md={6}>
           <img
-            src={selectedImage || product.image}
+            src={ product.image}
             alt={product.name}
             className="img-large"
           />

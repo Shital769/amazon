@@ -53,7 +53,7 @@ const ResetPasswordScreen = () => {
       <h1 className="my-3">Reset Password</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="password">
-          <Form.Label>New Passwprd</Form.Label>
+          <Form.Label>New Password</Form.Label>
           <Form.Control
             type="password"
             required
@@ -61,11 +61,11 @@ const ResetPasswordScreen = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="confirmPassword">
-          <Form.Label>Confirm New Passwprd</Form.Label>
+          <Form.Label>Confirm New Password</Form.Label>
           <Form.Control
             type="password"
             required
-            onChange={(e) => setConfirmPassword(e.target.vlaue)}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </Form.Group>
         <div className="mb-3">
