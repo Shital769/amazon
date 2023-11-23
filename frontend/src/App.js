@@ -71,10 +71,10 @@ function App() {
               : "site-container active-cont d-flex flex-column"
             : fullBox
             ? "site-container d-flex flex-column full-box"
-            : "site-container d-flex felx-column"
+            : "site-container d-flex flex-column"
         }
       >
-        <ToastContainer position="top-right" limit={1} />
+        <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
@@ -122,7 +122,7 @@ function App() {
                     </Link>
                   )}
                   {userInfo && userInfo.isAdmin && (
-                    <NavDropdown title="Admin" id="admoin-nav-dropdown">
+                    <NavDropdown title="Admin" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>DashBoard</NavDropdown.Item>
                       </LinkContainer>
@@ -154,7 +154,7 @@ function App() {
               <strong>Categories</strong>
             </Nav.Item>
             {categories.map((category) => (
-              <Nav.Item key={category._id}>
+              <Nav.Item key={category}>
                 <LinkContainer
                   to={{ pathname: "/search", search: `category=${category}` }}
                   onClick={() => setSidebarIsOpen(false)}
@@ -252,7 +252,7 @@ function App() {
                 }
               />
               <Route
-                path="/admin/products/:id"
+                path="/admin/product/:id"
                 element={
                   <AdminRoute>
                     <ProductEditScreen />
@@ -272,9 +272,7 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className=" bg-dark text-center text-info">
-            All rights reserved.
-          </div>
+          <div className="  text-center ">All rights reserved.</div>
         </footer>
       </div>
     </BrowserRouter>

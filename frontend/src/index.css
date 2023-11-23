@@ -21,7 +21,7 @@ main {
   color: black;
 }
 
-.productItems {
+.products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -109,7 +109,7 @@ main {
   display: none;
 }
 
-.full-box container {
+.full-box .container {
   height: 100vh;
   max-width: initial;
   margin: 0;
