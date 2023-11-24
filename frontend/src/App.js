@@ -190,14 +190,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route
+              {/* <Route
                 path="/map"
                 element={
                   <ProtectedRoute>
                     <MapScreen />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
               <Route
                 path="/order/:id"
@@ -272,7 +272,9 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className="  text-center ">All rights reserved.</div>
+          <div className=" bg-dark text-info  text-center ">
+            All rights reserved.
+          </div>
         </footer>
       </div>
     </BrowserRouter>
