@@ -108,7 +108,7 @@ const ShippingAddressScreen = () => {
           </Form.Group>
           <div className="mb-3">
             <Button
-              id="chooseLocationOnMap"
+              id="chooseOnMap"
               type="button"
               variant="light"
               onClick={() => navigate("/map")}

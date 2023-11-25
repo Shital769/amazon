@@ -11,14 +11,14 @@ import {
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const defaultLocation = { lat: 37.7749, lng: -122.4194 };
+const defaultLocation = { lat: 45.516, lng: -73.56 };
 const libraries = ["places"];
 
 const MapScreen = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const navigate = useNavigate();
-  const [apiKey, setApiKey] = useState("");
+  const [googleApiKey, setGoogleApiKey] = useState("");
   const [center, setCenter] = useState(defaultLocation);
   const [location, setLocation] = useState(center);
 
@@ -48,7 +48,7 @@ const MapScreen = () => {
       const { data } = await axios("/api/keys/google", {
         headers: { Authorization: `BEARER ${userInfo.token}` },
       });
-      setApiKey(data.key);
+      setGoogleApiKey(data.key);
       getUserCurrentLocation();
     };
 
@@ -56,7 +56,6 @@ const MapScreen = () => {
     ctxDispatch({
       type: "SET_FULLBOX_ON",
     });
-
   }, [ctxDispatch, userInfo]);
 
   const onLoad = (map) => {
@@ -103,7 +102,7 @@ const MapScreen = () => {
 
   return (
     <div className="fullBox">
-      <LoadScript libraries={libraries} googleMapsApiKey={apiKey}>
+      <LoadScript libraries={libraries} googleMapsApiKey={googleApiKey}>
         <GoogleMap
           id="sample-map"
           mapContainerStyle={{ height: "100%", width: "100%" }}
@@ -111,6 +110,7 @@ const MapScreen = () => {
           zoom={15}
           onLoad={onLoad}
           onIdle={onIdle}
+          // googleMapsApiKey={googleApiKey}
         >
           <StandaloneSearchBox
             onLoad={onLoadPlaces}

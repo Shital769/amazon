@@ -25,7 +25,7 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case "SET_FULBOX_ON":
+    case "SET_FULLBOX_ON":
       return { ...state, fullBox: true };
     case "SET_FULLBOX_OFF":
       return { ...state, fullBox: false };

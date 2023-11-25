@@ -29,7 +29,14 @@ app.get("/api/keys/paypal", (req, res) => {
 });
 
 app.get("/api/keys/google", (req, res) => {
-  res.send({ key: process.env.GOOGLE_API_KEY || "" });
+  // res.send({ key: process.env.GOOGLE_API_KEY || "" });
+  const apiKey = process.env.GOOGLE_API_KEY;
+
+  if (!apiKey) {
+    return res.status(500).json({ error: "Google API key not configured." });
+  }
+
+  res.json({ key: apiKey });
 });
 
 app.use("/api/upload", uploadRouter);
@@ -37,7 +44,6 @@ app.use("/api/seed", seedRouter);
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
-
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "/frontend/build")));

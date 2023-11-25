@@ -190,14 +190,14 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              {/* <Route
+              <Route
                 path="/map"
                 element={
                   <ProtectedRoute>
                     <MapScreen />
                   </ProtectedRoute>
                 }
-              /> */}
+              />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
               <Route
                 path="/order/:id"
