@@ -91,7 +91,7 @@ const SearchScreen = () => {
       }
     };
     fetchData();
-  }, [category, error, order, page, price, query, rating]);
+  }, [category, order, page, price, query, rating]);
 
   const [categories, setCategories] = useState([]);
 
@@ -118,7 +118,7 @@ const SearchScreen = () => {
 
     return `${
       skipPathname ? "" : "/search?"
-    }category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}order=${sortOrder}&page=${filterPage}&`;
+    }category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
 
   return (
