@@ -5,6 +5,7 @@ import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
 import axios from "axios";
+import LoadingBox from "../components/LoadingBox";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -22,6 +23,7 @@ const reducer = (state, action) => {
 const ProfileScreen = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
+
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
   const [password, setPassword] = useState("");
@@ -33,6 +35,11 @@ const ProfileScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
 
     try {
       const { data } = await axios.put(
@@ -96,6 +103,7 @@ const ProfileScreen = () => {
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Update</Button>
+          {loadingUpdate && <LoadingBox></LoadingBox>}
         </div>
       </form>
     </div>

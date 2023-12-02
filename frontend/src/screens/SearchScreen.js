@@ -82,9 +82,19 @@ const SearchScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
-        );
+        const { data } =
+          // `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
+          await axios.get("/api/products/search", {
+            params: {
+              page,
+              query,
+              category,
+              price,
+              rating,
+              order,
+            },
+          });
+
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_FAIL", payload: getError(error) });
