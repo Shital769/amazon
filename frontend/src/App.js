@@ -272,7 +272,7 @@ function App() {
           </Container>
         </main>
         <footer>
-          <div className=" bg-dark text-info  text-center ">
+          <div className=" p-3 bg-dark  text-info  text-center  ">
             All rights reserved.
           </div>
         </footer>
