@@ -12,7 +12,7 @@ import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const defaultLocation = { lat: 45.516, lng: -73.56 };
-const libraries = ["places"];
+const libs = ["places"];
 
 const MapScreen = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -56,7 +56,7 @@ const MapScreen = () => {
     ctxDispatch({
       type: "SET_FULLBOX_ON",
     });
-  }, [ctxDispatch, userInfo]);
+  }, [ctxDispatch, userInfo.token]);
 
   const onLoad = (map) => {
     mapRef.current = map;
@@ -101,8 +101,8 @@ const MapScreen = () => {
   };
 
   return (
-    <div className="fullBox">
-      <LoadScript libraries={libraries} googleMapsApiKey={googleApiKey}>
+    <div className="full-box">
+      <LoadScript libraries={libs} >
         <GoogleMap
           id="sample-map"
           mapContainerStyle={{ height: "100%", width: "100%" }}
@@ -110,7 +110,6 @@ const MapScreen = () => {
           zoom={15}
           onLoad={onLoad}
           onIdle={onIdle}
-          // googleMapsApiKey={googleApiKey}
         >
           <StandaloneSearchBox
             onLoad={onLoadPlaces}
