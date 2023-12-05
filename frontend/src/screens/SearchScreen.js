@@ -32,7 +32,7 @@ const reducer = (state, action) => {
 };
 
 const prices = [
-  { name: "$1 to 50", value: "1-50" },
+  { name: "$1 to $50", value: "1-50" },
   {
     name: "$51 to $200",
     value: "51-20",
@@ -101,14 +101,14 @@ const SearchScreen = () => {
       }
     };
     fetchData();
-  }, [category, order, page, price, query, rating]);
+  }, [category, error, order, page, price, query, rating]);
 
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get("/api/products/catgories");
+        const { data } = await axios.get("/api/products/categories");
         setCategories(data);
       } catch (error) {
         toast.error(getError(error));
@@ -127,7 +127,7 @@ const SearchScreen = () => {
     const sortOrder = filter.order || order;
 
     return `${
-      skipPathname ? "" : "/search?"
+      skipPathname ? " " : "/search?"
     }category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
 
@@ -190,8 +190,8 @@ const SearchScreen = () => {
               {ratings.map((r) => (
                 <li key={r.name}>
                   <Link
-                    className={`${r.rating}` === `${rating}` ? "text-bold" : ""}
                     to={getFilterUrl({ rating: r.rating })}
+                    className={`${r.rating}` === `${rating}` ? "text-bold" : ""}
                   >
                     <Rating caption={" & up"} rating={r.rating}></Rating>
                   </Link>
@@ -245,10 +245,10 @@ const SearchScreen = () => {
                       navigate(getFilterUrl({ order: e.target.value }));
                     }}
                   >
-                    <option value="newest">Newset Arrivals</option>
+                    <option value="newest">Newest Arrivals</option>
                     <option value="lowest">Price: Low to High</option>
                     <option value="highest">Price: High to Low</option>
-                    <option value="toprated">Avg. Customer Review</option>
+                    <option value="toprated">Avg. Customer Reviews</option>
                   </select>
                 </Col>
               </Row>
@@ -276,6 +276,7 @@ const SearchScreen = () => {
                   >
                     <Button
                       className={Number(page) === x + 1 ? "text-bold" : ""}
+                      variant="light"
                     >
                       {x + 1}
                     </Button>
