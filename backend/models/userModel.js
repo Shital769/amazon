@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     resetToken: { type: String },
     isAdmin: { type: Boolean, required: true, default: false },
   },
-  {
+{
     timestamps: true,
   }
 );

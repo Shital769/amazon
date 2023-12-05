@@ -42,6 +42,8 @@ const ProfileScreen = () => {
     }
 
     try {
+      dispatch({ type: "UPDATE_REQUEST" });
+
       const { data } = await axios.put(
         // "/api/users/" + userInfo._id,
         "/api/users/profile",
@@ -59,7 +61,7 @@ const ProfileScreen = () => {
       localStorage.setItem("userInfo", JSON.stringify(data));
       toast.success("Profile updated successfully");
     } catch (error) {
-      dispatch({ type: "FETCH_FAIL" });
+      dispatch({ type: "UPDATE_FAIL" });
       toast.error(getError(error));
     }
   };
