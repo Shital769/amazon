@@ -154,7 +154,9 @@ const SearchScreen = () => {
                   <Link
                     className={c === category ? "text-bold" : ""}
                     to={getFilterUrl({ category: c })}
-                  ></Link>
+                  >
+                    {c}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -260,7 +262,6 @@ const SearchScreen = () => {
                     <Product product={product}></Product>
                   </Col>
                 ))}
-                ;
               </Row>
               {/* TODO: paginationn */}
               <div>

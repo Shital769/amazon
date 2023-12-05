@@ -4,7 +4,7 @@
   "description": "## Tech Used:",
   "main": "index.js",
   "scripts": {
-    "build": "react-scripts build --output public",
+    "build": "react-scripts build",
     "start": "node backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,5 +14,8 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://github.com/shital769/amazon#readme"
+  "homepage": "https://github.com/shital769/amazon#readme",
+  "dependencies": {
+    "react-scripts": "^5.0.1"
+  }
 }
