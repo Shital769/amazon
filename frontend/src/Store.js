@@ -13,7 +13,7 @@ const initialState = {
       ? JSON.parse(localStorage.getItem("shippingAddress"))
       : { location: {} },
 
-    paymentMethod: localStorage.getItem("paymentMethod ")
+    paymentMethod: localStorage.getItem("paymentMethod")
       ? localStorage.getItem("paymentMethod")
       : "",
 

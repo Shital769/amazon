@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getError } from "../utils";
 import axios from "axios";
@@ -10,6 +10,7 @@ import Rating from "../components/Rating";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Product from "../components/Product";
+import { Store } from "../Store";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -35,7 +36,7 @@ const prices = [
   { name: "$1 to $50", value: "1-50" },
   {
     name: "$51 to $200",
-    value: "51-20",
+    value: "51-200",
   },
   {
     name: "$201 to $1000",
@@ -79,29 +80,24 @@ const SearchScreen = () => {
       error: " ",
     });
 
+  const { state } = useContext(Store);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } =
-          // `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
-          await axios.get("/api/products/search", {
-            params: {
-              page,
-              query,
-              category,
-              price,
-              rating,
-              order,
-            },
-          });
-
+        const { data } = await axios.get(
+          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
+        );
+        console.log("fetched data", data);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
+        console.log("State after FETCH_SUCCESS", state); // Add this line
       } catch (error) {
+        console.log("Fetch error", error);
         dispatch({ type: "FETCH_FAIL", payload: getError(error) });
       }
     };
     fetchData();
-  }, [category, error, order, page, price, query, rating]);
+  }, [category, error, order, page, price, query, rating, state]);
 
   const [categories, setCategories] = useState([]);
 
@@ -110,6 +106,7 @@ const SearchScreen = () => {
       try {
         const { data } = await axios.get("/api/products/categories");
         setCategories(data);
+        console.log("fetch categories", data);
       } catch (error) {
         toast.error(getError(error));
       }
@@ -175,8 +172,8 @@ const SearchScreen = () => {
               {prices.map((p) => (
                 <li key={p.value}>
                   <Link
-                    className={p.value === price ? "text-bold" : ""}
                     to={getFilterUrl({ price: p.value })}
+                    className={p.value === price ? "text-bold" : ""}
                   >
                     {p.name}
                   </Link>
@@ -223,7 +220,7 @@ const SearchScreen = () => {
                     {query !== "all" && " : " + query}
                     {category !== "all" && " : " + category}
                     {price !== "all" && " : Price " + price}
-                    {rating !== "all" && " :Rating " + rating + " & up"}
+                    {rating !== "all" && " : Rating " + rating + " & up"}
                     {query !== "all" ||
                     category !== "all" ||
                     rating !== "all" ||
@@ -252,17 +249,19 @@ const SearchScreen = () => {
                   </select>
                 </Col>
               </Row>
-              {products.length === 0 && (
+              {products?.length === 0 && (
                 <MessageBox>No Product Found!!!</MessageBox>
               )}
-
               <Row>
-                {products.map((product) => (
+                {console.log("Products in SearchScreen", products)}
+
+                {products?.map((product) => (
                   <Col sm={6} lg={4} className="mb-3" key={product._id}>
                     <Product product={product}></Product>
                   </Col>
                 ))}
               </Row>
+
               {/* TODO: paginationn */}
               <div>
                 {[...Array(pages).keys()].map((x) => (

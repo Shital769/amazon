@@ -7,6 +7,7 @@ import { Store } from "../Store";
 
 const Product = (props) => {
   const { product } = props;
+  
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -27,6 +28,8 @@ const Product = (props) => {
       payload: { ...item, quantity },
     });
   };
+
+  console.log("Product data in compt", product);
 
   return (
     <Card key={product.slug}>
