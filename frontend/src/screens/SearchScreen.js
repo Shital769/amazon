@@ -77,7 +77,7 @@ const SearchScreen = () => {
   const [{ loading, error, products, pages, countProducts }, dispatch] =
     useReducer(reducer, {
       loading: true,
-      error: " ",
+      error: "",
     });
 
   const { state } = useContext(Store);
