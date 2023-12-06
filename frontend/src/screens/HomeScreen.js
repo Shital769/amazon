@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useReducer } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Carousel } from "react-bootstrap";
 import Product from "../components/Product";
 import { Helmet } from "react-helmet-async";
 import LoadingBox from "../components/LoadingBox";
@@ -26,7 +26,6 @@ const HomeScreen = () => {
     loading: true,
     error: "",
   });
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +40,6 @@ const HomeScreen = () => {
   }, []);
 
   return (
-
     <div>
       <Helmet>
         <title>Amazon </title>
@@ -49,17 +47,31 @@ const HomeScreen = () => {
       <h1>Featured Products</h1>
       <div className="productItems">
         {loading ? (
-          <LoadingBox/>
+          <LoadingBox />
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
-          <Row>
-            {products.map((product) => (
-              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-                <Product product={product} />
-              </Col>
-            ))}
-          </Row>
+          <>
+            <Carousel>
+              {products.map((product) => (
+                <Carousel.Item key={product.slug}>
+                  <img
+                    className="d-block w-100 "
+                    src={product.image}
+                    alt={product.name}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+
+            <Row>
+              {products.map((product) => (
+                <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                  <Product product={product} />
+                </Col>
+              ))}
+            </Row>
+          </>
         )}
       </div>
     </div>

@@ -29,7 +29,6 @@ const Product = (props) => {
     });
   };
 
-  console.log("Product data in compt", product);
 
   return (
     <Card key={product.slug}>

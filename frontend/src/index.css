@@ -87,6 +87,7 @@ main {
 
 .active-cont {
   margin-left: 240px;
+  width: max-content;
 }
 
 .active-nav {

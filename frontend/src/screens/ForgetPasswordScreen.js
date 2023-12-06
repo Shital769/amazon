@@ -49,11 +49,10 @@ const ForgetPasswordScreen = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
+        <div className="mb-3">
+          <Button type="submit">Submit Form</Button>
+        </div>
       </Form>
-
-      <div className="mb-3">
-        <Button type="submit">Submit Form</Button>
-      </div>
     </Container>
   );
 };

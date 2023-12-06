@@ -27,7 +27,7 @@ const ResetPasswordScreen = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      toast.error("Password do not match");
       return;
     }
 
@@ -57,7 +57,7 @@ const ResetPasswordScreen = () => {
           <Form.Control
             type="password"
             required
-            onChange={(e) => setPassword(e.target.vlaue)}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="confirmPassword">

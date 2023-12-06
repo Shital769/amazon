@@ -88,11 +88,8 @@ const SearchScreen = () => {
         const { data } = await axios.get(
           `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
         );
-        console.log("fetched data", data);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
-        console.log("State after FETCH_SUCCESS", state); // Add this line
       } catch (error) {
-        console.log("Fetch error", error);
         dispatch({ type: "FETCH_FAIL", payload: getError(error) });
       }
     };
@@ -106,7 +103,6 @@ const SearchScreen = () => {
       try {
         const { data } = await axios.get("/api/products/categories");
         setCategories(data);
-        console.log("fetch categories", data);
       } catch (error) {
         toast.error(getError(error));
       }
@@ -253,7 +249,6 @@ const SearchScreen = () => {
                 <MessageBox>No Product Found!!!</MessageBox>
               )}
               <Row>
-                {console.log("Products in SearchScreen", products)}
 
                 {products?.map((product) => (
                   <Col sm={6} lg={4} className="mb-3" key={product._id}>
