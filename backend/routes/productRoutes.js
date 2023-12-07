@@ -26,9 +26,9 @@ productRouter.get("/", getRouteLimiter, async (req, res) => {
 
 productRouter.post(
   "/",
+  isAuthLimiter,
   isAuth,
   isAdmin,
-  isAuthLimiter,
   expressAsyncHandler(async (req, res) => {
     const newProduct = new Product({
       name: "sample-product  " + Date.now(),
@@ -49,9 +49,9 @@ productRouter.post(
 
 productRouter.put(
   "/:id",
+  isAuthLimiter,
   isAuth,
   isAdmin,
-  isAuthLimiter,
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
@@ -77,9 +77,9 @@ productRouter.put(
 
 productRouter.delete(
   "/:id",
+  isAuthLimiter,
   isAuth,
   isAdmin,
-  isAuthLimiter,
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
@@ -132,8 +132,8 @@ productRouter.post(
 const PAGE_SIZE = 3;
 productRouter.get(
   "/admin",
-  isAuth,
   isAuthLimiter,
+  isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const { query } = req;
