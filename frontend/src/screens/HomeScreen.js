@@ -54,11 +54,12 @@ const HomeScreen = () => {
           <>
             <Carousel>
               {products.map((product) => (
-                <Carousel.Item key={product.slug}>
+                <Carousel.Item key={product.slug} sm={6} md={4} lg={3}>
                   <img
                     className="d-block w-100 "
                     src={product.image}
                     alt={product.name}
+                    style={{ borderRadius:"20%"}}
                   />
                 </Carousel.Item>
               ))}

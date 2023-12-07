@@ -389,4 +389,5 @@ $ npm start
     3. show images in product screen
 
 53. Forget and Reset Password
-      1. 
+
+54. Implement Carousel
