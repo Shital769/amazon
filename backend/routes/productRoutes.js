@@ -2,10 +2,20 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
 import { isAdmin, isAuth } from "../utils.js";
+import rateLimit from "express-rate-limit";
 
 const productRouter = express.Router();
 
-productRouter.get("/", async (req, res) => {
+const getRouteLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+});
+const isAuthLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+});
+
+productRouter.get("/", getRouteLimiter, async (req, res) => {
   try {
     const products = await Product.find();
     res.send(products);
@@ -18,6 +28,7 @@ productRouter.post(
   "/",
   isAuth,
   isAdmin,
+  isAuthLimiter,
   expressAsyncHandler(async (req, res) => {
     const newProduct = new Product({
       name: "sample-product  " + Date.now(),
@@ -40,6 +51,7 @@ productRouter.put(
   "/:id",
   isAuth,
   isAdmin,
+  isAuthLimiter,
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
@@ -67,6 +79,7 @@ productRouter.delete(
   "/:id",
   isAuth,
   isAdmin,
+  isAuthLimiter,
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
@@ -81,6 +94,7 @@ productRouter.delete(
 productRouter.post(
   "/:id/reviews",
   isAuth,
+  isAuthLimiter,
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
@@ -119,6 +133,7 @@ const PAGE_SIZE = 3;
 productRouter.get(
   "/admin",
   isAuth,
+  isAuthLimiter,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const { query } = req;
@@ -141,6 +156,7 @@ productRouter.get(
 
 productRouter.get(
   "/search",
+  getRouteLimiter,
   expressAsyncHandler(async (req, res) => {
     const { query } = req;
     const pageSize = query.pageSize || PAGE_SIZE;
@@ -224,6 +240,7 @@ productRouter.get(
 
 productRouter.get(
   "/categories",
+  getRouteLimiter,
   expressAsyncHandler(async (req, res) => {
     const categories = await Product.find().distinct("category");
     res.send(categories);
@@ -239,7 +256,7 @@ productRouter.get("/slug/:slug", async (req, res) => {
   }
 });
 
-productRouter.get("/:id", async (req, res) => {
+productRouter.get("/:id", getRouteLimiter, async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
     res.send(product);
