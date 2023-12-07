@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import mg from "mailgun-js";
+import { rateLimit } from "express-rate-limit";
 
 export const baseUrl = () =>
   process.env.BASE_URL
@@ -23,7 +24,22 @@ export const generateToken = (user) => {
   );
 };
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, //15 min
+  limit: 100,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+});
+
 export const isAuth = (req, res, next) => {
+  //use rate limiter for isAuth
+  limiter(req, res, (err) => {
+    if (err)
+      return res
+        .status(429)
+        .send({ message: "Too many requests, please try again" });
+  });
+
   const authorization = req.headers.authorization;
   if (authorization) {
     const token = authorization.slice(7, authorization.length); //Bearer XXXXXX

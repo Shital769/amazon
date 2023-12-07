@@ -59,13 +59,12 @@ const HomeScreen = () => {
                     className="d-block w-100 "
                     src={product.image}
                     alt={product.name}
-                    style={{ borderRadius:"20%"}}
                   />
                 </Carousel.Item>
               ))}
             </Carousel>
 
-            <Row>
+            <Row className="mt-3" >
               {products.map((product) => (
                 <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
                   <Product product={product} />
